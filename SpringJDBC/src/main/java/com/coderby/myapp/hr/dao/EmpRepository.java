@@ -82,7 +82,11 @@ public class EmpRepository implements IEmpRepository {
 	@Override
 	public void deleteEmp(int empid, String email) {
 		String sql = "delete from employees where employee_id=? and email=?";
-		jt.update(sql, empid, email);
+		if(jt.update(sql, empid, email)>0) {
+			
+		}else {
+			throw new RuntimeException("없는 이메일입니다.");
+		}
 	}
 
 	@Override
