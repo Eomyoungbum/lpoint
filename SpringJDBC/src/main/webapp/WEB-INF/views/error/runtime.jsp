@@ -12,7 +12,6 @@
 alert("${exception.message}");
 history.back();
 </script>
-
 <!-- 
 	Failed URL : ${url}
 	Exception : ${exception.message}
