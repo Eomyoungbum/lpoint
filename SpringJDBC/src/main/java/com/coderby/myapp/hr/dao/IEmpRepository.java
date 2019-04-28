@@ -14,7 +14,7 @@ public interface IEmpRepository {
 	void updateEmp(EmpVO emp);
 	void insertEmp(EmpVO emp);
 	void deleteJobHistory(int empid);
-	void deleteEmp(int empid, String email);
+	int deleteEmp(int empid, String email);
 	List<Map<String, Object>> getAllDeptId();
 	List<Map<String, Object>> getAllJobId();
 	List<Map<String, Object>> getAllManagerId();

@@ -51,9 +51,9 @@ public class EmpService implements IEmpService {
 	}
 
 	@Override
-	public void deleteEmp(int empid, String email) {
+	public int deleteEmp(int empid, String email) {
 		deleteJobHistory(empid);
-		er.deleteEmp(empid, email);
+		return er.deleteEmp(empid, email);
 	}
 
 	@Override

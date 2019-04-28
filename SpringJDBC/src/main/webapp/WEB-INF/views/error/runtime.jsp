@@ -8,8 +8,10 @@
 <title>CoderByError</title>
 </head>
 <body>
-<h1>에러페이지</h1>
-<p>오류가 발생했습니다. 담당자에게 문의해 주세요.</p>
+<script type="text/javascript">
+alert("${exception.message}");
+history.back();
+</script>
 
 <!-- 
 	Failed URL : ${url}
