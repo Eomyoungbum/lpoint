@@ -2,13 +2,17 @@ package com.coderby.myapp.hr.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.coderby.myapp.hr.model.EmpVO;
 import com.coderby.myapp.hr.service.IEmpService;
@@ -82,5 +86,14 @@ public class EMPController {
 	public String deleteEmp(int empid, String email, Model model) {
 		es.deleteEmp(empid, email);
 		return "redirect:/hr";
+	}
+	
+	@ExceptionHandler({RuntimeException.class})
+	public ModelAndView runEx(HttpServletRequest request, Exception ex) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("url", request.getRequestURI());
+		mav.addObject("exception", ex);
+		mav.setViewName("error/runtime");
+		return mav;
 	}
 }
