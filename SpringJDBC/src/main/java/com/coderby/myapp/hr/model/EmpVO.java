@@ -2,16 +2,31 @@ package com.coderby.myapp.hr.model;
 
 import java.sql.Date;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 public class EmpVO {
 	
+	@Min(value=300)
 	private int employeeId;
+	@Pattern(regexp="[[a-zA-Z]가-힣] {1,}")
 	private String firstName;
+	@Pattern(regexp="[[a-zA-Z]가-힣] {1,}")
 	private String lastName;
+	@Pattern(regexp="[A-Z0-9]{2,}")
 	private String email;
+	@Pattern(regexp="^[0-9] {2,3}[-\\.]?[0-9] {3,4}[-\\.]?[0-9] {4}$")
 	private	String phoneNumber;
 	private Date hireDate;
 	private String jobId;
+	@Digits(integer=6, fraction=2)
+	@DecimalMin(value="0.1")
 	private double salary;
+	@DecimalMin(value="0.00")
+	@DecimalMax(value="0.99")
 	private double commissionPct;
 	private int managerId;
 	private int departmentId;

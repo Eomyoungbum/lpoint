@@ -3,16 +3,20 @@ package com.coderby.myapp.hr.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coderby.myapp.hr.model.EmpVO;
 import com.coderby.myapp.hr.service.IEmpService;
@@ -49,15 +53,26 @@ public class EMPController {
 
 	@RequestMapping(value="/hr/insert", method=RequestMethod.GET)
 	public String insertEmp(Model model) {
+		model.addAttribute("emp",new EmpVO());
 		model.addAttribute("deptList", es.getAllDeptId());
 		model.addAttribute("jobList", es.getAllJobId());
 		model.addAttribute("managerList", es.getAllManagerId());
-		return "hr/insertform";
+		return "hr/form";
 	}
 
 	@RequestMapping(value="/hr/insert", method=RequestMethod.POST)
-	public String insertEmp(EmpVO emp, Model model) {
-		es.insertEmp(emp);
+	public String insertEmp(@ModelAttribute("emp") @Valid EmpVO emp, BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+		if(result.hasErrors()) {
+			model.addAttribute("deptList", es.getAllDeptId());
+			model.addAttribute("jobList", es.getAllJobId());
+			model.addAttribute("managerList", es.getAllManagerId());
+			return "hr/form";
+		}
+		try {
+			es.insertEmp(emp);
+		}catch(RuntimeException e) {
+			redirectAttrs.addFlashAttribute("message", e.getMessage());
+		}
 		return "redirect:/hr";
 	}
 

@@ -1,39 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>CoderByInsert</title>
+<style type="text/css">
+.error{color : red}
+</style>
 </head>
 <body>
 <h1>사원 정보 입력</h1>
-<form action="./insert" method="post">
+<form:form action="/myapp/hr/insert" modelAttribute="emp">
 <table border="1">
 <tr>
 	<th>EmployeeId</th>
-	<td><input type="number" name="employeeId" required></td>
+	<td><form:input path="employeeId" />
+	<form:errors path="employeeId" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>FirstName</th>
-	<td><input type="text" name="firstName"></td>
+	<td><form:input path="firstName" />
+	<form:errors path="firstName" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>LastName</th>
-	<td><input type="text" name="lastName" required></td>
+	<td><form:input path="lastName" />
+	<form:errors path="lastName" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>Email</th>
-	<td><input type="text" name="email" required></td>
+	<td><form:input path="email" />
+	<form:errors path="email" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>PhoneNumber</th>
-	<td><input type="text" name="phoneNumber"></td>
+	<td><form:input path="phoneNumber" />
+	<form:errors path="phoneNumber" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>HireDate</th>
-	<td><input type="date" name="hireDate" required></td>
+	<td><form:input path="hireDate" type="date" required="required" />
+	<form:errors path="hireDate" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>JobId</th>
@@ -47,11 +57,13 @@
 </tr>
 <tr>
 	<th>Salary</th>
-	<td><input type="number" name="salary"></td>
+	<td><form:input path="salary" type="number" />
+	<form:errors path="salary" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>CommissionPct</th>
-	<td><input type="number" name="commissionPct" step="0.1" min="0" max="0.99"></td>
+	<td><form:input path="commissionPct" type="number" />
+	<form:errors path="commissionPct" class="error"></form:errors></td>
 </tr>
 <tr>
 	<th>ManagerId</th>
@@ -81,6 +93,6 @@
 	</td>
 </tr>
 </table>
-</form>
+</form:form>
 </body>
 </html>
