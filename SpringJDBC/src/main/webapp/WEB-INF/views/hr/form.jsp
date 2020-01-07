@@ -88,7 +88,7 @@
 <tr>
 	<th>&nbsp;</th>
 	<td>
-		<input type="submit" value="저 장">
+		<input type="submit" value="입 력">
 		<input type="reset" value="취 소">
 	</td>
 </tr>

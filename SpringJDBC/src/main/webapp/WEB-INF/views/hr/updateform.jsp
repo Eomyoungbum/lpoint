@@ -9,7 +9,7 @@
 <title>CoderByUpdate</title>
 </head>
 <body>
-<h1>사원 정보 입력</h1>
+<h1>사원 정보 수정</h1>
 <form action="./update" method="post">
 <table border="1">
 <tr>
@@ -87,7 +87,7 @@
 <tr>
 	<th>&nbsp;</th>
 	<td>
-		<input type="submit" value="저 장">
+		<input type="submit" value="수 정">
 		<input type="reset" value="취 소">
 	</td>
 </tr>
